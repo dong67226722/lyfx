@@ -19,3 +19,11 @@ for d in data:
 	if len(d) < 100:
 		new.append(d)
 print("一共有", len(new), "笔资料少于100")
+
+
+
+love = []
+for d in data:
+	if "love" in d:
+		love.append(d)
+print("一共有", len(love), "笔资料提到love")
