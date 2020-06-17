@@ -1,11 +1,14 @@
+import time
+import progressbar
+
 data = []
 count = 0
+bar = progressbar.ProgressBar(max_value=1000000)
 with open("lyfx.txt", "r") as f:
 	for line in f:
 		data.append(line)
 		count += 1
-		if count % 2000 == 0:
-			print(len(data))
+		bar.update(count)
 print("档案读取完成了，总共有", len(data), "笔资料")
 
 print(data[0])
@@ -23,13 +26,14 @@ for d in data:
 print("一共有", len(new), "笔资料少于100")
 
 
-
 love = []
 for d in data:
 	if "love" in d:
 		love.append(d)
 print("一共有", len(love), "笔资料提到love")
 
+#文字计数
+start_time = time.time()
 wc = {}
 for d in data:
 	words = d.split(' ')
@@ -40,9 +44,10 @@ for d in data:
 			wc[word] = 1
 
 for word in wc:
-	if wc[word] > 100000:
+	if wc[word] > 1000000:
 		print(word, wc[word])
-
+end_time = time.time()
+print('花了',end_time - start_time, '秒')
 print(len(wc))
 
 
